@@ -6,3 +6,6 @@ edition = "2018"
 
 [dependencies]
 hyper = "0.12.23"
+
+[target.heroku]
+version = "stable"
