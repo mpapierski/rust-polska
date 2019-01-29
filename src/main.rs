@@ -8,7 +8,14 @@ use hyper::rt::Future;
 use hyper::service::service_fn_ok;
 use hyper::{Body, Response, Server};
 
-static TEXT: &str = "Hello, Rust Polska!";
+static TEXT: &str = r#"<p>Hello, Rust Polska!</p>
+<p>
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/mpapierski/rust-polska/fork" data-icon="octicon-repo-forked" aria-label="Fork mpapierski/rust-polska on GitHub">Fork</a>
+</p>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+"#;
 
 fn main() -> Result<(), Box<std::error::Error>> {
     pretty_env_logger::init();
