@@ -15,7 +15,8 @@ fn main() -> Result<(), Box<std::error::Error>> {
         .and_then(|v| v.parse().ok())
         // For local development port 3000 is used if no $PORT is found.
         .unwrap_or(3000);
-    let addr = ([127, 0, 0, 1], port).into();
+
+    let addr = ([0, 0, 0, 0], port).into();
 
     let new_svc = || service_fn_ok(|_req| Response::new(Body::from(TEXT)));
 
