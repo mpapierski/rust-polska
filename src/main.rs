@@ -1,4 +1,6 @@
 extern crate hyper;
+#[macro_use]
+extern crate log;
 
 use std::env;
 
@@ -9,6 +11,8 @@ use hyper::{Body, Response, Server};
 static TEXT: &str = "Hello, Rust Polska!";
 
 fn main() -> Result<(), Box<std::error::Error>> {
+    pretty_env_logger::init();
+
     // Heroku passes $PORT
     let port = env::var("PORT")
         .ok()
@@ -22,7 +26,7 @@ fn main() -> Result<(), Box<std::error::Error>> {
 
     let server = Server::bind(&addr)
         .serve(new_svc)
-        .map_err(|e| eprintln!("server error: {}", e));
+        .map_err(|e| error!("server error: {}", e));
 
     hyper::rt::run(server);
 
